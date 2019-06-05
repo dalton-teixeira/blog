@@ -11,7 +11,7 @@ app.get("/", (req, res) => res.json({message: "Welcome to my blog!"}))
 
 app.route("/posts")
   .get(posts.getPosts)
-  .post(posts.putPost)
+  .post(posts.addPost)
 app.route("/posts/:id")
   .get(posts.getPost)
   .delete(posts.deletePost)
@@ -21,3 +21,5 @@ const PORT = config.port;
 app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`)
 });
+
+module.exports = app

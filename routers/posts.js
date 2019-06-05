@@ -41,7 +41,7 @@ function getPost(req, res) {
   })
 }
 
-function putPost(req, res) {
+function addPost(req, res) {
   if(!req.body.title) {
     return res.status(400).send({
       success: 'false',
@@ -64,7 +64,7 @@ function putPost(req, res) {
   return res.status(201).send({
     success: 'true',
     message: 'Post added successfully',
-    newPost
+    post: newPost
   })
 }
 
@@ -130,9 +130,9 @@ function updatePost(req, res) {
   return res.status(201).send({
     success: 'true',
     message: 'Post updated successfully',
-    removed: newPost
+    post: newPost
   })
 }
 
 
-module.exports = { getPosts, putPost, deletePost, getPost, updatePost };
+module.exports = { getPosts, addPost, deletePost, getPost, updatePost };

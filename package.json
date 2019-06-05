@@ -4,7 +4,7 @@
   "description": "It is a exercise on Node with Express",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --timeout 10000 --require babel-core/register",
     "start": "node_modules/.bin/nodemon server.js --exec babel-node --",
     "dev": "node_modules/.bin/babel-node server.js"
   },
@@ -25,6 +25,10 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "coffeescript": "^2.4.1",
+    "mocha": "^6.1.4",
     "nodemon": "^1.19.1"
   }
 }
