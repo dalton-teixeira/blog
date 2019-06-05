@@ -1,4 +1,10 @@
-import db from '../data/db';
+import database from '../data/db';
+
+//this is used to inject the DB for testing
+var db = database;
+function initDB(_db){
+  db = _db
+}
 
 function getById(id){
   var result = null;
@@ -10,11 +16,11 @@ function getById(id){
   return result;
 }
 
-function getPosts(req, res) {
-  res.status(200).send({
+function getPosts(req, res){
+  return res.status(200).send({
     success: 'true',
     message: 'posts retrieved successfully',
-    posts: db.posts
+    results: db.posts
   });
 }
 
@@ -135,4 +141,4 @@ function updatePost(req, res) {
 }
 
 
-module.exports = { getPosts, addPost, deletePost, getPost, updatePost };
+module.exports = { initDB, getPosts, addPost, deletePost, getPost, updatePost };

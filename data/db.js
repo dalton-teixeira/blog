@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt';
 const  posts =  [
     {
       id: 1,
@@ -6,4 +7,13 @@ const  posts =  [
     }
 ];
 
-module.exports = { posts }
+const  users =  [
+    {
+      username: 'dalton',
+      nickname: "d4lton",
+      password: bcrypt.hashSync('password', 10),
+      email: 'dalton@mail.com'
+    }
+];
+
+module.exports = { posts, users }

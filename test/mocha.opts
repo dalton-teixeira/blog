@@ -1,2 +1,4 @@
 test/integration
 --recursive
+test/unit
+--recursive
