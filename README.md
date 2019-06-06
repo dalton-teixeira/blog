@@ -98,10 +98,10 @@ post body
   "draft": boolean,
 }
 
-# Unit Test
+## Unit Test
 It is a simple project usiung mocha and chai. It mocks the request object and stubs the database.
-TODO: Increate unit test coverage.
+#### TODO: Increase unit test coverage.
 
-# Integration tests
+## Integration tests
 It start the app and call it on the API. It test the en-to-end flow.
-TODO: Increase API testing coverage.
+#### TODO: Increase API testing coverage.
