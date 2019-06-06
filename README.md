@@ -32,7 +32,7 @@ The application port is configured in config.js
 Used for logging in.
 Usage:
 Method Post.
-post body
+post body:
     {
         "username":<username>,
 	"password":<password>,  
@@ -41,7 +41,7 @@ post body
 Username and password must be stored in /data/db.js
 
 It returns the token that must be used on the headers of all calls:
-headers
+headers:
     {
         "x-access-token": <token retrieved from the login>
         "username": <username used in login>
@@ -51,11 +51,11 @@ headers
 Retrieves posts by text present either on the title or content.
 It only retrieves public posts or private posts for the authenticated user as well as its draft posts.
 Usage:
-post body
+post body:
     {
         "searchText": "aea adad everyone"
     }
-headers
+headers:
     {
         "x-access-token": <token retrieved from the login>
         "username": <username used in login>
@@ -72,7 +72,7 @@ Retrieves the post for the given id even though it is draft. It retrieves only p
 
 #### Method post
 Add new post for the  authenticated user. Title and content are required.
-post body
+post body:
     {
          "title": <free text>,
 	 "content": <free text>,
@@ -90,7 +90,7 @@ Method Put
 Update the post based on the id. It validates if the user is the owner.
 /posts/:id
 
-post body
+post body:
     {
         "title": <free text>,
         "content": <free text>,
