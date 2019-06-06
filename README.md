@@ -18,6 +18,8 @@ In order to run tests the rest API must be down.
 
 It creates lists, deletes, updates and retrieves post.
 
+It authenticates the user and all operations are allows only if it is logged in.
+
 It uses JWT authentication.
 
 The application port is configured in config.js
