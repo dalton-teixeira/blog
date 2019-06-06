@@ -1,15 +1,15 @@
 # blog
 It is a experimental exercise on NodeJS and Express
 
-To install all required dependencies use:
+###To install all required dependencies use:
 
 npm install
 
-To start the rest API:
+###To start the rest API:
 
 npm start
 
-To run integration and unit tests:
+###To run integration and unit tests:
 
 npm run test
 
@@ -20,11 +20,15 @@ It creates lists, deletes, updates and retrieves post.
 
 It authenticates the user and all operations are allows only if it is logged in.
 
+###Security
 It uses JWT authentication.
 
+###Portablity
 The application port is configured in config.js
 
-# API /auth
+##API
+
+### /auth
 Used for logging in.
 Usage:
 Method Post.
@@ -43,7 +47,7 @@ headers
   "username": <username used in login>
 }  
 
-# API /searchPosts
+### /searchPosts
 Retrieves posts by text present either on the title or content.
 It only retrieves public posts or private posts for the authenticated user as well as its draft posts.
 Usage:
@@ -57,13 +61,13 @@ headers
   "username": <username used in login>
 }    
 
-# API /posts
+### /posts
 Used for handling posts. It requires token and username sent on the header.
 
-Method: get
+####Method: get
 Retrieves all public posts or private posts for the authenticated  user. It does not include draft posts which can be retrieved by id.
 
-Method get /post/:id
+####Method get /post/:id
 Retrieves the post for the given id even though it is draft. It retrieves only posts for the authenticated user or publics posts.
 
 Method post
