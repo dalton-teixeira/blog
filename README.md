@@ -33,6 +33,7 @@ Used for logging in.
 Usage:
 Method Post.
 post body:
+
     {
         "username":<username>,
 	"password":<password>,  
@@ -42,6 +43,7 @@ Username and password must be stored in /data/db.js
 
 It returns the token that must be used on the headers of all calls:
 headers:
+
     {
         "x-access-token": <token retrieved from the login>
         "username": <username used in login>
@@ -52,10 +54,12 @@ Retrieves posts by text present either on the title or content.
 It only retrieves public posts or private posts for the authenticated user as well as its draft posts.
 Usage:
 post body:
+
     {
         "searchText": "aea adad everyone"
     }
 headers:
+
     {
         "x-access-token": <token retrieved from the login>
         "username": <username used in login>
@@ -73,6 +77,7 @@ Retrieves the post for the given id even though it is draft. It retrieves only p
 #### Method post
 Add new post for the  authenticated user. Title and content are required.
 post body:
+
     {
          "title": <free text>,
 	 "content": <free text>,
@@ -91,6 +96,7 @@ Update the post based on the id. It validates if the user is the owner.
 /posts/:id
 
 post body:
+
     {
         "title": <free text>,
         "content": <free text>,
