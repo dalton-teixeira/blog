@@ -25,6 +25,7 @@ It uses JWT authentication.
 
 ### Portablity
 The application port is configured in config.js
+Any other environment configuration canbe added yo this file.
 
 ## API
 
@@ -62,7 +63,7 @@ headers:
 
     {
         "x-access-token": <token retrieved from the login>
-        "username": <username used in login>
+	"username": <username used in login>
     }    
 
 ### /posts
@@ -99,9 +100,9 @@ post body:
 
     {
         "title": <free text>,
-        "content": <free text>,
-        "private": boolean,
-        "draft": boolean,
+	"content": <free text>,
+	"private": boolean,
+	"draft": boolean,
     }
 
 ## Unit Test
