@@ -51,4 +51,34 @@ describe('Manage Posts - Unit Tests', () => {
       done();
     });
   });
+  describe('Update a post', () => {
+    it('it should update a post successfully', (done) => {
+      let res = new ResMock();
+      let req = {
+        body: {
+          title: 'stubbed title',
+          content: "bla bla",
+        },
+        headers: {'username': 'dalton'},
+        params: {id: 1}
+      }
+      var testDB = {posts:  [
+        {
+          id: 1,
+          title: "Hello",
+          content: "Hello everyone,as you may know this is a test application.",
+          private: false,
+          author: 'dalton'
+        }
+      ]};
+      posts.initDB(testDB);
+      let result = posts.updatePost(req, res);
+      result._status.should.be.eql(201);
+      result.sendCalledWith.should.have.property('success').eql('true');
+      result.sendCalledWith.should.have.property('message').eql('Post updated successfully');
+      result.sendCalledWith.should.have.property('post');
+      result.sendCalledWith.post.should.have.property('id').eql(1);
+      done();
+    });
+  });
 });

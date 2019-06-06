@@ -20,15 +20,19 @@ function getById(id, username){
   return result;
 }
 
+/*Get all posts to display on dashboard or main page.
+It does not include drafts. Drafts can be retrieved by get by id*/
 function getPosts(req, res){
   var results = [];
   db.posts.forEach(function(post) {
-    if (post.author == req.headers["username"]){
-      results.push(post);
-    } else if (!post.private){
-      results.push(post);
-    } else if (post.private.toString().toLowerCase() != "true"){
-      results.push(post);
+    if (!post.draft || post.draft.toString().toLowerCase() != "true") {
+      if (post.author == req.headers["username"]){
+        results.push(post);
+      } else if (!post.private){
+        results.push(post);
+      } else if (post.private.toString().toLowerCase() != "true"){
+        results.push(post);
+      }
     }
   });
   return res.status(200).send({
@@ -79,7 +83,8 @@ function addPost(req, res) {
     title: req.body.title,
     content: req.body.content,
     author: req.headers['username'],
-    private: !req.body.private ? false : req.body.private
+    private: !req.body.private ? false : req.body.private,
+    draft: !req.body.draft ? false : req.body.draft
   }
   db.posts.push(newPost);
 
@@ -147,7 +152,8 @@ function updatePost(req, res) {
     id: req.params.id,
     title: req.body.title,
     content: req.body.content,
-    private: !req.body.private ? false : req.body.private
+    private: !req.body.private ? false : req.body.private,
+    draft: !req.body.draft ? false : req.body.draft
   }
   db.posts.push(newPost);
   return res.status(201).send({
@@ -156,6 +162,5 @@ function updatePost(req, res) {
     post: newPost
   })
 }
-
 
 module.exports = { initDB, getPosts, addPost, deletePost, getPost, updatePost };

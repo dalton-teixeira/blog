@@ -5,7 +5,8 @@ const  posts =  [
       title: "Hello",
       content: "Hello everyone,as you may know this is a test application.",
       private: false,
-      author: 'dalton'
+      author: 'dalton',
+      draft: false
     }
 ];
 
