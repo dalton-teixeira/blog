@@ -20,7 +20,9 @@ app.route("/posts/:id")
   .put(auth.validate, posts.updatePost);
 app.route("/auth")
   .post(auth.login);
-
+app.route("/searchPosts")
+  .post(auth.validate, posts.searchPosts);
+  
 const PORT = config.port;
 app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`)

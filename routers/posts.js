@@ -163,4 +163,48 @@ function updatePost(req, res) {
   })
 }
 
-module.exports = { initDB, getPosts, addPost, deletePost, getPost, updatePost };
+function containsText(searchCriteria, text){
+  var searchStatements = searchCriteria.toLowerCase().split(' ');
+  var result = false;
+  searchStatements.forEach(function(word){
+    if (text.toLowerCase().includes(word)){
+      result = true;
+      return true;
+    }
+  });
+  return result;
+}
+
+function searchPosts(req, res){
+  var results = [];
+  if (!req.body.searchText){
+    return res.status(400).send({
+      success: 'false',
+      message: 'It is missing search criteria'
+    });
+  }
+
+  db.posts.forEach(function(post) {
+    console.log(containsText(req.body.searchText, post.content));
+    console.log(containsText(req.body.searchText, post.title));
+
+    if (containsText(req.body.searchText, post.content) ||
+        containsText(req.body.searchText, post.title)){
+      console.log(post);
+      if (post.author == req.headers["username"]){
+        results.push(post);
+      } else if (!post.private){
+        results.push(post);
+      } else if (post.private.toString().toLowerCase() != "true"){
+        results.push(post);
+      }
+    }
+  });
+  return res.status(200).send({
+    success: 'true',
+    message: 'posts retrieved successfully',
+    results: results
+  });
+}
+
+module.exports = { initDB, getPosts, addPost, deletePost, getPost, updatePost, searchPosts };
