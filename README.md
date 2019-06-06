@@ -1,6 +1,10 @@
 # blog
 It is a experimental exercise on NodeJS and Express
 
+### Because of the dependency on the package bcrypt, it is required to install:
+- python 2X and add to path: https://www.python.org/downloads/release/python-2714/
+- 
+
 ### To install all required dependencies use:
 
     npm install
