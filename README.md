@@ -1,15 +1,15 @@
 # blog
 It is a experimental exercise on NodeJS and Express
 
-###To install all required dependencies use:
+### To install all required dependencies use:
 
 npm install
 
-###To start the rest API:
+### To start the rest API:
 
 npm start
 
-###To run integration and unit tests:
+### To run integration and unit tests:
 
 npm run test
 
@@ -20,13 +20,13 @@ It creates lists, deletes, updates and retrieves post.
 
 It authenticates the user and all operations are allows only if it is logged in.
 
-###Security
+### Security
 It uses JWT authentication.
 
-###Portablity
+### Portablity
 The application port is configured in config.js
 
-##API
+## API
 
 ### /auth
 Used for logging in.
@@ -64,13 +64,13 @@ headers
 ### /posts
 Used for handling posts. It requires token and username sent on the header.
 
-####Method: get
+#### Method: get
 Retrieves all public posts or private posts for the authenticated  user. It does not include draft posts which can be retrieved by id.
 
-####Method get /post/:id
+#### Method get /post/:id
 Retrieves the post for the given id even though it is draft. It retrieves only posts for the authenticated user or publics posts.
 
-Method post
+#### Method post
 Add new post for the  authenticated user. Title and content are required.
 post body
 {
@@ -82,7 +82,7 @@ post body
 
 TODO: Add more validation on the input fields such as this package does https://github.com/express-validator/express-validator
 
-Method Delete
+#### Method Delete
 Delete the post by id. It validates if user is the author.
 /posts/:id
 
