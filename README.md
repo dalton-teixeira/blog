@@ -98,4 +98,4 @@ TODO: Increate unit test coverage.
 
 # Integration tests
 It start the app and call it on the API. It test the en-to-end flow.
-TODO: Increate API testing coverage.
+TODO: Increase API testing coverage.
