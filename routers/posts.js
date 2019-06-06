@@ -12,7 +12,6 @@ function getById(id, username){
     if (post.id == id){
       if(post.author == username ||
         (!post.private || post.private.toString().toLowerCase() != "true")){
-          console.log(post.private.toString().toLowerCase());
         result = post;
       }
     }
@@ -104,10 +103,10 @@ function deletePost(req, res) {
     });
   }
   var result = getById(req.params.id, req.headers['username']);
-  if (!result){
+  if (!result || result.author != req.headers["username"]){
     return res.status(400).send({
       success: 'false',
-      message: 'There is any post with given id',
+      message: 'There is any post with given id and username',
       id: req.params.id
     });
   }
@@ -128,10 +127,10 @@ function updatePost(req, res) {
     });
   }
   var result = getById(req.params.id, req.headers['username']);
-  if (!result){
+  if (!result || result.author != req.headers["username"]){
     return res.status(400).send({
       success: 'false',
-      message: 'There is any post with given id',
+      message: 'There is any post with given id and username',
       id: req.params.id
     });
   }
@@ -153,7 +152,8 @@ function updatePost(req, res) {
     title: req.body.title,
     content: req.body.content,
     private: !req.body.private ? false : req.body.private,
-    draft: !req.body.draft ? false : req.body.draft
+    draft: !req.body.draft ? false : req.body.draft,
+    author: req.headers["username"]
   }
   db.posts.push(newPost);
   return res.status(201).send({
@@ -185,12 +185,8 @@ function searchPosts(req, res){
   }
 
   db.posts.forEach(function(post) {
-    console.log(containsText(req.body.searchText, post.content));
-    console.log(containsText(req.body.searchText, post.title));
-
     if (containsText(req.body.searchText, post.content) ||
         containsText(req.body.searchText, post.title)){
-      console.log(post);
       if (post.author == req.headers["username"]){
         results.push(post);
       } else if (!post.private){
