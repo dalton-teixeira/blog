@@ -16,7 +16,7 @@ npm run test
 In order to run tests the rest API must be down.
 
 
-It Create posts, List posts, Delete posts, update posts, retrieve post by id.
+It creates lists, deletes, updates and retrieves post.
 
 It uses JWT authentication.
 
