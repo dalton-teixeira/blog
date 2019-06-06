@@ -19,7 +19,7 @@ It is a experimental exercise on NodeJS and Express
 In order to run tests the rest API must be down.
 
 ## API Features
-It creates lists, deletes, updates and retrieves post.
+It is a CRUD and text search for blog post.
 
 It authenticates the user and all operations are allows only if it is logged in.
 
