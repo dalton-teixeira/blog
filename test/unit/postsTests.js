@@ -21,8 +21,9 @@ describe('Manage Posts - Unit Tests', () => {
       let req = {
         body: {
           title: 'stubbed title',
-          content: "bla bla"
-        }
+          content: "bla bla",
+        },
+        headers: {'username': 'dalton'}
       }
       var testDB = {posts:  []};
       posts.initDB(testDB);

@@ -6,21 +6,35 @@ function initDB(_db){
   db = _db
 }
 
-function getById(id){
+function getById(id, username){
   var result = null;
   db.posts.forEach(function(post) {
     if (post.id == id){
-      result = post;
+      if(post.author == username ||
+        (!post.private || post.private.toString().toLowerCase() != "true")){
+          console.log(post.private.toString().toLowerCase());
+        result = post;
+      }
     }
   });
   return result;
 }
 
 function getPosts(req, res){
+  var results = [];
+  db.posts.forEach(function(post) {
+    if (post.author == req.headers["username"]){
+      results.push(post);
+    } else if (!post.private){
+      results.push(post);
+    } else if (post.private.toString().toLowerCase() != "true"){
+      results.push(post);
+    }
+  });
   return res.status(200).send({
     success: 'true',
     message: 'posts retrieved successfully',
-    results: db.posts
+    results: results
   });
 }
 
@@ -32,7 +46,7 @@ function getPost(req, res) {
       params: req.params
     });
   }
-  var result = getById(req.params.id);
+  var result = getById(req.params.id, req.headers['x-access-token']);
   if (!result){
     return res.status(400).send({
       success: 'false',
@@ -63,7 +77,9 @@ function addPost(req, res) {
   const newPost = {
     id: db.posts.length + 1,
     title: req.body.title,
-    content: req.body.content
+    content: req.body.content,
+    author: req.headers['username'],
+    private: !req.body.private ? false : req.body.private
   }
   db.posts.push(newPost);
 
@@ -82,7 +98,7 @@ function deletePost(req, res) {
       params: req.params
     });
   }
-  var result = getById(req.params.id);
+  var result = getById(req.params.id, req.headers['username']);
   if (!result){
     return res.status(400).send({
       success: 'false',
@@ -106,7 +122,7 @@ function updatePost(req, res) {
       params: req.params
     });
   }
-  var result = getById(req.params.id);
+  var result = getById(req.params.id, req.headers['username']);
   if (!result){
     return res.status(400).send({
       success: 'false',
@@ -130,7 +146,8 @@ function updatePost(req, res) {
   const newPost = {
     id: req.params.id,
     title: req.body.title,
-    content: req.body.content
+    content: req.body.content,
+    private: !req.body.private ? false : req.body.private
   }
   db.posts.push(newPost);
   return res.status(201).send({

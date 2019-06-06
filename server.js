@@ -9,9 +9,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get("/", (req, res) => res.json({message: "Welcome to my blog!"}))
-posts.initDB(db);
-auth.initDB(db);
+app.get("/", (req, res) => res.json({message: "Welcome to my blog!"}));
 app.set('secretKey', 'mysecrect');
 app.route("/posts")
   .get(auth.validate, posts.getPosts)

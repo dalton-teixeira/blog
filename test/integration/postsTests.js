@@ -33,6 +33,7 @@ describe('Manage Posts - Integration tests', () => {
         .post('/posts')
         .send(newPostBody)
         .set('x-access-token', token)
+        .set('username', credentials['username'])
         .end((err, res) => {
           res.should.have.status(201);
           res.body.should.be.a('object');
@@ -48,6 +49,7 @@ describe('Manage Posts - Integration tests', () => {
       chai.request(server)
         .get(`/posts/${postId}`)
         .set('x-access-token', token)
+        .set('username', credentials['username'])
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -65,6 +67,7 @@ describe('Manage Posts - Integration tests', () => {
         .put(`/posts/${postId}`)
         .send(modifiedPostBody)
         .set('x-access-token', token)
+        .set('username', credentials['username'])
         .end((err, res) => {
           res.should.have.status(201);
           res.body.should.be.a('object');
@@ -78,6 +81,7 @@ describe('Manage Posts - Integration tests', () => {
       chai.request(server)
         .get(`/posts/${postId}`)
         .set('x-access-token', token)
+        .set('username', credentials['username'])
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -94,6 +98,7 @@ describe('Manage Posts - Integration tests', () => {
       chai.request(server)
         .delete(`/posts/${postId}`)
         .set('x-access-token', token)
+        .set('username', credentials['username'])
         .end((err, res) => {
           res.should.have.status(201);
           res.body.should.be.a('object');
@@ -105,6 +110,7 @@ describe('Manage Posts - Integration tests', () => {
       chai.request(server)
         .get(`/posts/${postId}`)
         .set('x-access-token', token)
+        .set('username', credentials['username'])
         .end((err, res) => {
           res.should.have.status(400);
           res.body.should.be.a('object');
