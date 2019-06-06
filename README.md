@@ -37,7 +37,7 @@ post body:
 
     {
         "username":<username>,
-	"password":<password>,  
+        "password":<password>,  
     }
 
 Username and password must be stored in /data/db.js
@@ -80,10 +80,10 @@ Add new post for the  authenticated user. Title and content are required.
 post body:
 
     {
-         "title": <free text>,
-	 "content": <free text>,
-	 "private": boolean,
-	 "draft": boolean,
+        "title": <free text>,
+        "content": <free text>,
+        "private": boolean,
+        "draft": boolean,
     }
 
 TODO: Add more validation on the input fields such as this package does https://github.com/express-validator/express-validator
@@ -100,9 +100,9 @@ post body:
 
     {
         "title": <free text>,
-	"content": <free text>,
-	"private": boolean,
-	"draft": boolean,
+        "content": <free text>,
+        "private": boolean,
+        "draft": boolean,
     }
 
 ## Unit Test
