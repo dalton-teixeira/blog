@@ -46,7 +46,7 @@ It returns the token that must be used on the headers of all calls:
 headers:
 
     {
-        "x-access-token": <token retrieved from the login>
+        "x-access-token": <token retrieved from the login>,
         "username": <username used in login>
     }  
 
@@ -62,8 +62,8 @@ post body:
 headers:
 
     {
-        "x-access-token": <token retrieved from the login>
-	"username": <username used in login>
+        "x-access-token": <token retrieved from the login>,
+        "username": <username used in login>
     }    
 
 ### /posts
